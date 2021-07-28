@@ -1,5 +1,9 @@
 -- Antes de correr, crear una base de datos con nombre 'hospital'
-
+--- creamos un usuario que pueda trabajar en la tabla
+CREATE DATABASE hospital
+CREATE USER userhospital@'%' IDENTIFIED BY '12345678';
+GRANT ALL PRIViLEGES ON hospital.* TO userhospital@'%';
+--- 
 USE hospital;
 DROP TABLE IF EXISTS Physician;
 CREATE TABLE Physician (

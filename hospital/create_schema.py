@@ -13,6 +13,7 @@ if __name__ == '__main__':
     engine = create_engine('mysql+pymysql://root:root@localhost:3310')
 
     engine.execute("CREATE DATABASE IF NOT EXISTS dw_hospital")
+    engine.execute("GRANT ALL PRIVILEGES ON hospital.* TO userhospital@'%'")
     engine.execute("USE dw_hospital")
     engine.execute("SET FOREIGN_KEY_CHECKS = 0;")  # para que nos permita eliminar filas con referencias de FK si queremos reconstruir el esquema
 
