@@ -77,6 +77,7 @@ if __name__ == '__main__':
             physician_id INT NOT NULL,
             nurse_id INT,
             PRIMARY KEY(id),
+            FOREIGN KEY(patient_ssn) REFERENCES bt_patient(ssn),
             FOREIGN KEY(procedure_code) REFERENCES bt_procedure(code),
             FOREIGN KEY(stay_id) REFERENCES bt_stay(id),
             FOREIGN KEY(physician_id) REFERENCES bt_employee(id),
@@ -84,4 +85,3 @@ if __name__ == '__main__':
         );""")
 
     engine.execute("SET FOREIGN_KEY_CHECKS = 1;")
-    
