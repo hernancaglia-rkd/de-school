@@ -5,9 +5,6 @@ from sqlalchemy import create_engine
                 y agregamos role que dice si es physician o nurse
 """
 
-USER = 'root'
-PASSWORD = 'root'
-SERVER = '127.0.0.1:3310'
 
 if __name__ == '__main__':
     engine = create_engine('mysql+pymysql://root:root@localhost:3310')  # connect to server
@@ -85,3 +82,4 @@ if __name__ == '__main__':
         );""")
 
     engine.execute("SET FOREIGN_KEY_CHECKS = 1;")
+    

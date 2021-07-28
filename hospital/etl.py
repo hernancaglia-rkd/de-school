@@ -1,9 +1,5 @@
 from sqlalchemy import create_engine
 
-USER = 'root'
-PASSWORD = 'root'
-SERVER = '127.0.0.1:3310'
-
 
 def extract(engine):
     engine.execute("CREATE DATABASE IF NOT EXISTS staging")  # creamos DB staging para guardar la data tal cual como viene
@@ -222,3 +218,4 @@ if __name__ == '__main__':
 
     # agregamos los nuevos datos a nuestro data warehouse
     load(engine)
+    

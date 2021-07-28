@@ -37,4 +37,3 @@ SELECT
     CertificationDate,
     CertificationExpires
 FROM Trained_In;
-

@@ -1,4 +1,6 @@
-USE Practica;
+-- Antes de correr, crear una base de datos con nombre 'hospital'
+
+USE hospital;
 DROP TABLE IF EXISTS Physician;
 CREATE TABLE Physician (
   EmployeeID INTEGER NOT NULL,
@@ -16,7 +18,6 @@ CREATE TABLE Department (
   CONSTRAINT pk_Department PRIMARY KEY(DepartmentID),
   CONSTRAINT fk_Department_Physician_EmployeeID FOREIGN KEY(Head) REFERENCES Physician(EmployeeID)
 );
-
 
 DROP TABLE IF EXISTS Affiliated_With;
 CREATE TABLE Affiliated_With (
