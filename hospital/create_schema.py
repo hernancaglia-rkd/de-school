@@ -1,13 +1,16 @@
 from sqlalchemy import create_engine
 
-"""
+"""Notas
     - employee: juntamos physician y nurse en una sola dimension
                 y agregamos role que dice si es physician o nurse
 """
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root:root@localhost:3310')  # connect to server
+    
+    # connect to server
+    # cambiar root:root por tu usuario:password y 3310 por el puerto que asignaste a tu base de datos
+    engine = create_engine('mysql+pymysql://root:root@localhost:3310')
 
     engine.execute("CREATE DATABASE IF NOT EXISTS dw_hospital")
     engine.execute("USE dw_hospital")
@@ -82,4 +85,3 @@ if __name__ == '__main__':
         );""")
 
     engine.execute("SET FOREIGN_KEY_CHECKS = 1;")
-    

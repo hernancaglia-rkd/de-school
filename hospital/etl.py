@@ -208,7 +208,10 @@ def load(engine):
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+pymysql://root:root@localhost:3310')  # connect to server
+    
+    # connect to server
+    # cambiar root:root por tu usuario:password y 3310 por el puerto que asignaste a tu base de datos
+    engine = create_engine('mysql+pymysql://root:root@localhost:3310')
     
     # extraemos los datos de la fuente y los guardamos en un area staging para usar
     extract(engine)
@@ -218,4 +221,3 @@ if __name__ == '__main__':
 
     # agregamos los nuevos datos a nuestro data warehouse
     load(engine)
-    
