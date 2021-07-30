@@ -1,9 +1,15 @@
 from sqlalchemy import create_engine
 
+# Readme: Seguir primero los pasos en create_schema.py!
+
+USER = 'userhospital'
+PASSWORD = 'userpw'
+SERVER = 'localhost'
+PORT = '3310'  # Cambiar por el puerto que asignaste a tu MySQL! por defecto 3306
+
 
 def extract(engine):
-    engine.execute("CREATE DATABASE IF NOT EXISTS staging")  # creamos DB staging para guardar la data tal cual como viene
-    engine.execute("USE staging")
+    engine.execute("USE staging")  # staging para guardar la data tal cual como viene
 
     engine.execute("DROP TABLE IF EXISTS raw_physician;")
     engine.execute("""
@@ -210,8 +216,7 @@ def load(engine):
 if __name__ == '__main__':
     
     # connect to server
-    # cambiar root:root por tu usuario:password y 3310 por el puerto que asignaste a tu base de datos
-    engine = create_engine('mysql+pymysql://root:root@localhost:3310')
+    engine = create_engine(f'mysql+pymysql://{USER}:{PASSWORD}@{SERVER}:{PORT}')
     
     # extraemos los datos de la fuente y los guardamos en un area staging para usar
     extract(engine)

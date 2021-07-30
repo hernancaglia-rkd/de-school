@@ -1,20 +1,33 @@
 from sqlalchemy import create_engine
 
-"""Notas
+""" Previo a ejecutar este script:
+1. Crear la DB hospital y poblarla (los dos scripts en /creacion-db)
+2. Crear las DB que usaremos para staging y para el data warehouse:
+    CREATE DATABASE IF NOT EXISTS staging
+    CREATE DATABASE IF NOT EXISTS dw_hospital
+3. Crear el usuario userhospital con el que trabajaremos y darle los permisos:
+    CREATE USER IF NOT EXISTS userhospital@localhost IDENTIFIED BY 'userpw';
+    GRANT ALL ON hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+    GRANT ALL ON staging.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+    GRANT ALL ON dw_hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+
+    Notas
     - employee: juntamos physician y nurse en una sola dimension
                 y agregamos role que dice si es physician o nurse
 """
+
+USER = 'userhospital'
+PASSWORD = 'userpw'
+SERVER = 'localhost'
+PORT = '3310'  # Cambiar por el puerto que asignaste a tu MySQL! por defecto 3306
 
 
 if __name__ == '__main__':
     
     # connect to server
-    # cambiar root:root por tu usuario:password y 3310 por el puerto que asignaste a tu base de datos
-    engine = create_engine('mysql+pymysql://root:root@localhost:3310')
+    engine = create_engine(f'mysql+pymysql://{USER}:{PASSWORD}@{SERVER}:{PORT}')
 
-    engine.execute("CREATE DATABASE IF NOT EXISTS dw_hospital")
-    engine.execute("GRANT ALL PRIVILEGES ON hospital.* TO userhospital@'%'")
-    engine.execute("USE dw_hospital")
+    engine.execute("USE dw_hospital;")
     engine.execute("SET FOREIGN_KEY_CHECKS = 0;")  # para que nos permita eliminar filas con referencias de FK si queremos reconstruir el esquema
 
     # Dimension empleado
