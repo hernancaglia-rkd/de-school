@@ -1,18 +1,21 @@
 from sqlalchemy import create_engine
 
-""" Previo a ejecutar este script:
-1. Crear la DB hospital y poblarla (los dos scripts en /creacion-db)
-2. Crear las DB que usaremos para staging y para el data warehouse:
-    CREATE DATABASE IF NOT EXISTS staging
-    CREATE DATABASE IF NOT EXISTS dw_hospital
-3. Crear el usuario userhospital con el que trabajaremos y darle los permisos:
-    CREATE USER IF NOT EXISTS userhospital@localhost IDENTIFIED BY 'userpw';
-    GRANT ALL ON hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
-    GRANT ALL ON staging.* TO userhospital@localhost IDENTIFIED BY 'userpw';
-    GRANT ALL ON dw_hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+"""
+Previo a ejecutar este script:
+    1. Crear la DB hospital y poblarla (los dos scripts en /creacion-db)
+    2. Crear las DB que usaremos para staging y para el data warehouse:
+        CREATE DATABASE IF NOT EXISTS staging
+        CREATE DATABASE IF NOT EXISTS dw_hospital
+    3. Crear el usuario userhospital con el que trabajaremos y darle los permisos:
+        CREATE USER IF NOT EXISTS userhospital@localhost IDENTIFIED BY 'userpw';
+        GRANT ALL ON hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+        GRANT ALL ON staging.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+        GRANT ALL ON dw_hospital.* TO userhospital@localhost IDENTIFIED BY 'userpw';
+    4. Cambiar PORT por el tuyo (linea 24 de create_schema.py y linea 8 de etl.py).
+        Podes ver tu puerto cuando te conectas con tu herramienta, por defecto es 3306
 
-    Notas
-    - employee: juntamos physician y nurse en una sola dimension
+Notas
+    employee: juntamos physician y nurse en una sola dimension
                 y agregamos role que dice si es physician o nurse
 """
 
